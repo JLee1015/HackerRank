@@ -1,0 +1,31 @@
+/*
+Make a regex to find acceptable ip addresses.
+Acceptable ip's are in the form A.B.C.D where A,B,C, and D range from 0-255 
+and can be no longer than 3 digits. Leading 0's are allowed.
+*/
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Scanner;
+
+class Solution{
+
+	public static void main(String[] args){
+    	Scanner in = new Scanner(System.in);
+        while(in.hasNext()){
+            String IP = in.next();
+            System.out.println(IP.matches(new MyRegex().pattern));
+        }
+
+    }
+}
+
+class MyRegex {
+    String accept = "(\\d{1,2}|(0|1)\\d{2}|2[0-4]\\d|25[0-5])";
+    String pattern = accept + "." +accept + "." + accept + "." + accept;
+    
+    // \\d{1,2}		catches all 1 or 2 digit numbers
+    // (0|1)\\d{2}	catches all 3 digit numbers starting with 0 or 1
+	// 2[0-4]\\d	catches 200-249
+	// 25[0-5]		catches 250-255
+}
